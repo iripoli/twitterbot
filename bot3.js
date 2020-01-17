@@ -9,14 +9,14 @@ T.get('account/verify_credentials', {
     include_email: false
 }, onAuthenticated)
 
-const palabrasClave = ['macri gato', 'cristina chorra', 'sergio massa', 'unidas podemos', 'macrisis']
-const respuestas = ['Y a mi que me importa lo que vos pensas', 'pero deja de llorar por favor', 'Vos por que sos igual de ladron']
+const palabrasClave = ['macri gato', 'cristina chorra', 'sergio massa', 'unidas podemos', 'macrisis', 'kukas', 'kretina', 'mauricio macri la puta que te pario']
+const respuestas = ['Y a mi que me importa lo que vos pensas', 'pero deja de llorar por favor', 'Vos por que sos igual de ladron', 'igual es kulpa de los K', 'IGUAL ES CULPA DE MACRI GATO']
 
 function onAuthenticated(err) {
     var stream = T.stream('statuses/filter', {track:palabrasClave, tweet_mode:'extended'})
     
     stream.on('tweet', function (tweet) {
-        if (!tweet.retweeted_status && isTweetExactMatch(tweet.text)){
+        if (!tweet.retweeted_status && !tweet.user.screenName ==='pepedans' && isTweetExactMatch(tweet.text)){
             sendReply(tweet)
         }
         console.log(tweet.text)
@@ -33,11 +33,8 @@ function sendReply(tweet){
     var response = '@' + screenName + ' ' + respuestas[Math.floor(Math.random() * respuestas.length)]
 
     T.post('statuses/update', {
-        // To reply we need the id of tweet we're replying to.
         in_reply_to_status_id:tweet.id_str,
-        // Status is the content of the tweet, we set it to the response string we made above.
         status:response
-        // After we tweet we use a callback function to check if our tweet has been succesful.
     })
 }
 
