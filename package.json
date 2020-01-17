@@ -1,0 +1,22 @@
+{
+  "name": "twitterbot",
+  "version": "1.0.0",
+  "description": "Bot that replies and retweets",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iripoli/twitterbot.git"
+  },
+  "author": "iripoli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iripoli/twitterbot/issues"
+  },
+  "homepage": "https://github.com/iripoli/twitterbot#readme",
+  "dependencies": {
+    "twit": "^2.2.11"
+  }
+}
